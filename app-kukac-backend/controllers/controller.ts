@@ -1,6 +1,6 @@
-const axios = require('axios');
+import axios from 'axios';
 
-class Controller {
+export class Controller {
     constructor() { }
 
     axiosInstance = axios.create({
@@ -20,5 +20,3 @@ class Controller {
         return rendaPerCapita.toFixed(2);
     }
 }
-
-module.exports = Controller;

@@ -1,7 +1,7 @@
-const express = require('express');
-const bodyparser = require('body-parser');
-const cors = require('cors');
-const Controller = require('./controllers/controller');
+import * as express from 'express';
+import * as cors from 'cors';
+import * as bodyparser from 'body-parser';
+import { Controller } from './controllers/controller';
 
 const app = express();
 
@@ -12,10 +12,10 @@ app.use(bodyparser.urlencoded({
 app.use(cors());
 
 app.post('/', async function (req, res, next) {
-    dados = req.body;
+    let dados = req.body;
 
     dados.cep = dados.cep.replace(/[.\-]/gi, '');
-    controller = new Controller();
+    const controller = new Controller();
 
     dados.endereco = await controller.getEndereco(dados.cep);
 
@@ -24,4 +24,4 @@ app.post('/', async function (req, res, next) {
     res.status(200).send(dados);
 });
 
-app.listen(3000, '0.0.0.0', () => { console.log('funcionou') });
+app.listen(3000, '0.0.0.0', () => { console.log('Servidor Online na porta 3000') });
